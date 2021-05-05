@@ -1,0 +1,110 @@
+Docker Implementations
+
+how to search a docker image in hub.docker.com
+docker search httpd
+
+Download a docker image from hub.docker.com
+docker image pull <image_name>:<image_version/tag>
+docker pull httpd
+
+List out docker images from your local system
+docker image ls
+
+Create/run/start a docker container from image
+docker run -d --name <container_Name> <image_name>:<image_version/tag>
+d - run your container in back ground (detached)
+
+docker run -d  --name appcontainer httpd:latest
+docker ps -a
+
+
+Expose your application to host server
+docker run -d  -p <host_port>:<container_port> --name <container_Name> <image_name>:<Image_version/tag>
+
+docker run -d --name httpd_server -p 8080:80 httpd:2.2
+
+wget ipoftheserver:80
+docker run -d -p 8080:80 app-server httpd:latest
+wget ipoftheserver:8080
+
+browse the ip address
+
+
+List out running containers
+docker ps
+
+List out all docker container (running, stpooed, terminated, etc...)
+docker ps -a
+
+run a OS based container which interactive mode (nothing but login to container after it is up and running)
+docker run -i -t --name centos_server centos:latest
+i - interactive
+t - Terminal
+docker run -i -t --name centos_server centos:latest
+
+
+Stop a container
+docker stop <container_id>
+
+Start a container which is in stopped or exit state
+docker start <container_id>
+
+Remove a container
+docker rm <container_id>
+
+login to a docker container
+docker exec -it <container_Name> /bin/bash
+
+
+
+
+run commands inside a container
+
+docker pull tomcat:latest
+docker images
+docker run -d --name webserver tomcat
+docker ps
+docker exec -it webserver /bin/bash
+exit
+docker ps 
+docker ps -a
+
+
+
+Docker Hub and How it works 
+
+create an account in the docker.hub.com
+
+1) docker pull ubuntu
+2) docker pull ubuntu:16.04
+3) docker ps
+4) docker run -d --name ubuntu_16.04 ubuntu:16.04
+5) docker ps -a
+6) docker images
+7) docker tag ubuntu:latest awscloudvendor/ubuntu_demo ---> name of the docker account user (image name should be username)
+8) docker images
+9) docker login
+10) docker push awscloudvendor/ubuntu_demo ---> image can vew in the browser
+11) docker image ls
+12) docker image rm -f awscloudvendor/ubuntu_demo ubuntu:16.04 ubuntu:latest
+13) docker ps 
+14) docker ps -a
+15) docker rm -f  (name of the container)
+16) docker pull awscloudvendor/ubuntu_demo
+
+Copy files onto a Docker container
+
+1) docker images
+2) docker ps
+3) cat index.html
+    hello
+4) docker cp index.html nameofthecontainer:/tmp
+5) docker exec -it nameofthecontainer /bin/bash
+6) ls -l
+
+
+
+
+
+
+
